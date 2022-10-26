@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.Ejercicio1ApiLibros.utils.MessageResponseDto;
+
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
@@ -20,17 +22,17 @@ public class EmailController {
 	private EmailService emailS;
 	
 	@PostMapping("/send")
-	public void sendEmail(@RequestBody Email email) {
-		emailS.sendEmail(email);
+	public  MessageResponseDto<String> sendEmail(@RequestBody Email email) {
+		return emailS.sendEmail(email);
 	}
 
 	@PostMapping("/sendArgs")
-	public void sendEmailArgs(
+	public  MessageResponseDto<String> sendEmailArgs(
 			@RequestParam(required=true) String to,
 			@RequestParam(required=true) String subject,
 			@RequestParam(required=true) String text,
 			@RequestPart(required = false) MultipartFile file) {
 		
-		emailS.sendEmailArgs(to, subject, text, file);
+		return emailS.sendEmailArgs(to, subject, text, file);
 	}
 }
