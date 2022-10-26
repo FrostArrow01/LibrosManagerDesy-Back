@@ -62,13 +62,13 @@ public class LibroController {
 			return libroS.updateLibro(book, id);
 		}
 		
-//		Borrar libro en base de datos
+//		Borrar un libro por id
 		@DeleteMapping("/delete/{id}")
 		public MessageResponseDto<String> delete(@PathVariable Integer id){
 			return libroS.deleteLibro(id);
 		}
 		
-//		Borrar libro en base de datos
+//		Borrar multiples libros 
 		@PostMapping("/deleteM")
 		public MessageResponseDto<String> delete(@RequestBody ArrayList<Libro> libros){
 			return libroS.deleteMultipleLibros(libros);
