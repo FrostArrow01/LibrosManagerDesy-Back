@@ -49,7 +49,7 @@ public class LibroController {
 			
 		}
 		
-//		Crear libro en base de datos
+//		Crear libro
 		@PostMapping("/add")
 		public MessageResponseDto<String> create(@RequestBody Libro book, @RequestHeader HttpHeaders headers) { // el @RequestBody indica que tiene que coger la info del cuerpo de la request
 			System.out.println(headers.get("User-Agent")); //con HttpHeaders e imprimiendo esta línea sabemos desde donde se hace la peticion
