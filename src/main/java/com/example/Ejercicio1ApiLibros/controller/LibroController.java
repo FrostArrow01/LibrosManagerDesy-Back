@@ -49,7 +49,7 @@ public class LibroController {
 			
 		}
 		
-//		Crear libro en base de datos
+//		Crear libro
 		@PostMapping("/add")
 		public MessageResponseDto<String> create(@RequestBody Libro book, @RequestHeader HttpHeaders headers) { // el @RequestBody indica que tiene que coger la info del cuerpo de la request
 			System.out.println(headers.get("User-Agent")); //con HttpHeaders e imprimiendo esta línea sabemos desde donde se hace la peticion
@@ -62,20 +62,20 @@ public class LibroController {
 			return libroS.updateLibro(book, id);
 		}
 		
-//		Borrar libro en base de datos
+//		Borrar libro libro
 		@DeleteMapping("/delete/{id}")
 		public MessageResponseDto<String> delete(@PathVariable Integer id){
 			return libroS.deleteLibro(id);
 		}
 		
-//		Borrar libro en base de datos
+//		Borrar multiples libros
 		@PostMapping("/deleteM")
 		public MessageResponseDto<String> delete(@RequestBody ArrayList<Libro> libros){
 			return libroS.deleteMultipleLibros(libros);
 		}
 		
 		
-////		Buscar todos los libros de un autor
+//		Buscar todos los libros de un autor
 		@GetMapping("/autor/{dni}")
 		public MessageResponseDto<ArrayList<Libro>> findAllLibrosAutor(@PathVariable String dni){
 			return libroS.librosAutor(dni);
