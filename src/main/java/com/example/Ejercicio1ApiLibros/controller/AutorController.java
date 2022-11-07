@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.Ejercicio1ApiLibros.dto.AutorSlimDto;
 import com.example.Ejercicio1ApiLibros.entities.Autor;
 import com.example.Ejercicio1ApiLibros.entities.Libro;
+import com.example.Ejercicio1ApiLibros.mapper.AutorMapper;
 import com.example.Ejercicio1ApiLibros.services.AutorService;
 import com.example.Ejercicio1ApiLibros.utils.MessageResponseDto;
 
@@ -30,10 +32,19 @@ public class AutorController {
 	@Autowired
 	private AutorService autorS;
 	
-	//Buscar todos los autores
+	@Autowired
+	private AutorMapper autorMapper;
+	
+//		Buscar todos los autores
 		@GetMapping("/all")
 		public MessageResponseDto<List<Autor>> findAll() {
 			return autorS.findAllAutor();
+		}
+		
+//		Buscar todos los autorSlimDto
+		@GetMapping("/allDto")
+		public MessageResponseDto<List<AutorSlimDto>> findAllDto() {
+			return autorS.findAllAutorSlimDto();
 		}
 		
 //		Buscar autor por id
@@ -48,8 +59,8 @@ public class AutorController {
 		public MessageResponseDto<String> create(@RequestBody Autor autor) { // el @RequestBody indica que tiene que coger la info del cuerpo de la request
 			return autorS.createAutor(autor);
 		}
-		
-////	Actualizar autor existente
+			
+//		Actualizar autor existente
 		@PutMapping("/editar/{id}")
 		public MessageResponseDto<String> update(@RequestBody Autor autor, @PathVariable String id) {
 			return autorS.updateAutor(autor, id);
